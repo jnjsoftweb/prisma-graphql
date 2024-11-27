@@ -23,3 +23,7 @@ esm/*
 !.env.example
 
 _*/
+
+# database
+db/
+migrations/
