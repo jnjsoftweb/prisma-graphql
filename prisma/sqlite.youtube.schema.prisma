@@ -1,0 +1,113 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("SQLITE_YOUTUBE_URL")
+}
+
+model channels {
+  id                Int       @id @default(autoincrement())
+  channelId         String    @unique
+  title             String
+  customUrl         String?
+  publishedAt       DateTime?
+  description       String?
+  thumbnail         String?
+  uploadsPlaylistId String?
+  viewCount         Int?
+  subscriberCount   Int?
+  videoCount        Int?
+}
+
+model downloads {
+  id         Int       @id @default(autoincrement())
+  videoId    String    @unique
+  channelId  String?
+  playlistId String?
+  fileName   String?
+  youtubeUrl String?
+  appUrl     String?
+  localPath  String?
+  downloaded DateTime?
+  review     String?
+  like       String?
+}
+
+model mostPopularVideos {
+  id           Int       @id @default(autoincrement())
+  videoId      String    @unique
+  channelId    String?
+  channelTitle String?
+  title        String?
+  description  String?
+  thumbnail    String?
+  publishedAt  DateTime?
+  duration     String?
+  caption      String?
+  tags         String?
+  viewCount    Int?
+  likeCount    Int?
+  commentCount Int?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model notMatchPlaylistItems {
+  id          Int     @id @default(autoincrement())
+  playlistId  String  @unique
+  videoIds    String?
+  videosCount Int?
+  itemsCount  Int
+
+  @@ignore
+}
+
+model playlists {
+  id            Int       @id @default(autoincrement())
+  playlistId    String    @unique
+  channelId     String
+  title         String
+  description   String?
+  videoIds      String?
+  thumbnail     String?
+  publishedAt   DateTime?
+  itemCount     Int?
+  privacyStatus String?
+}
+
+model subscriptions {
+  id             Int       @id @default(autoincrement())
+  subscriptionId String    @unique
+  userId         String
+  channelId      String
+  subscribed     DateTime? @default(now())
+}
+
+model users {
+  id          Int     @id @default(autoincrement())
+  userId      String  @unique
+  email       String?
+  apiKey      String?
+  name        String?
+  description String?
+  thumbnail   String?
+  password    String?
+}
+
+model videos {
+  id           Int       @id @default(autoincrement())
+  videoId      String    @unique
+  channelId    String?
+  playlistId   String?
+  title        String?
+  description  String?
+  thumbnail    String?
+  publishedAt  DateTime?
+  duration     String?
+  caption      String?
+  tags         String?
+  viewCount    Int?
+  likeCount    Int?
+  commentCount Int?
+}
