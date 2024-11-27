@@ -1,0 +1,25 @@
+# modules
+node_modules/
+yarn.lock
+package-lock.json
+
+# binary
+*.exe
+
+# build
+cjs/*
+!.swcrc
+!package.json
+esm/*
+!.swcrc
+!package.json
+
+# macos
+.DS_Store
+
+# secrets
+.env
+.env.*
+!.env.example
+
+_*/

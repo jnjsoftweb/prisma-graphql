@@ -1,0 +1,23 @@
+# macos
+.DS_Store
+
+# secrets
+.env
+.env.*
+!.env.example
+
+# users
+_*/
+docs/
+src/
+package/
+
+.vscode/
+.gitignore
+.npmignore
+.prettierrc
+
+publish.bat
+publish.sh
+yarn.lock
+package-lock.json
